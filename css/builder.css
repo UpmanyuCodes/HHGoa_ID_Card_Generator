@@ -577,3 +577,443 @@
 
     display: block;
 }
+
+/* =========================================
+   LIVE PHOTO PREVIEW
+========================================= */
+
+.photo-placeholder {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.builder-photo {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+/* =========================================
+   CANVAS-STYLE PREVIEW CARD
+========================================= */
+
+.id-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.id-card {
+    width: min(420px, 90%);
+    aspect-ratio: 1200 / 1765;
+
+    position: relative;
+
+    padding: 24px;
+
+    background: #F5EFD9;
+    color: #071B13;
+
+    border: none;
+
+    box-shadow: 14px 14px 0 #F06A4F;
+
+    transform: rotate(-2deg);
+
+    overflow: hidden;
+}
+
+
+/* HEADER */
+
+.id-card-header {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 4px 0 18px;
+
+    border: none;
+
+    font-family: monospace;
+    font-size: 11px;
+    font-weight: 600;
+
+    color: #F5EFD9;
+
+    background: #063B2B;
+
+    margin: -24px -24px 0;
+
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+
+/* GREEN HEADER AREA */
+
+.id-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 150px;
+
+    background: #063B2B;
+
+    z-index: 0;
+}
+
+
+/* Keep content above header */
+
+.id-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* PHOTO */
+
+.id-card-photo {
+    position: relative;
+
+    width: 100%;
+    height: 48%;
+
+    margin: 25px 0 25px;
+
+    overflow: hidden;
+
+    background: #0D7048;
+
+    border: none;
+
+    box-shadow: 8px 8px 0 #071B13;
+}
+
+.id-card-photo .photo-placeholder {
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #0D7048;
+}
+
+.builder-photo {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* PHOTO NUMBER */
+
+.photo-mark {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    padding: 7px 9px;
+
+    background: #F4C542;
+
+    color: #071B13;
+
+    border: none;
+
+    font-family: monospace;
+    font-size: 9px;
+}
+
+
+/* DETAILS */
+
+.id-card-details {
+    display: block;
+
+    padding: 0;
+
+    margin-top: 8px;
+}
+
+.id-card-details span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-family: monospace;
+    font-size: 8px;
+
+    color: #063B2B;
+}
+
+.id-card-name strong {
+    display: block;
+
+    font-family: Georgia, serif;
+
+    font-size: 34px;
+
+    line-height: 1;
+
+    color: #071B13;
+}
+
+.id-card-stack {
+    margin-top: 18px;
+}
+
+.id-card-stack strong {
+    font-family: monospace;
+
+    font-size: 11px;
+
+    color: #063B2B;
+}
+
+
+/* DIVIDER */
+
+.id-card-details::after {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+
+    height: 2px;
+
+    margin-top: 20px;
+
+    background: #071B13;
+}
+
+
+/* FOOTER */
+
+.id-card-footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: auto;
+
+    padding-top: 15px;
+
+    border: none;
+
+    font-family: monospace;
+
+    font-size: 8px;
+
+    color: #063B2B;
+}
+
+/* =========================================
+   PREVIEW TROPICAL DECORATION
+========================================= */
+
+.preview-decoration {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* SUN */
+
+.preview-sun {
+    position: absolute;
+
+    width: 55px;
+    height: 55px;
+
+    top: 75px;
+    right: 55px;
+
+    border-radius: 50%;
+
+    background: #F4C542;
+
+    z-index: 10;
+
+    box-shadow:
+        0 0 0 8px rgba(244, 197, 66, 0.15),
+        0 0 0 16px rgba(244, 197, 66, 0.08);
+}
+
+.preview-decoration {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 10;
+}
+
+.id-card-header,
+.id-card-photo,
+.id-card-details,
+.id-card-footer {
+    position: relative;
+    z-index: 20;
+}
+
+/* LEAVES */
+
+.preview-leaf {
+    position: absolute;
+
+    width: 90px;
+    height: 35px;
+
+    border-radius: 100% 0 100% 0;
+
+    background: #4F8F45;
+
+    opacity: 0.9;
+}
+
+
+/* LEFT */
+
+.leaf-1 {
+    left: 15px;
+    top: 180px;
+
+    transform: rotate(-35deg);
+}
+
+
+/* RIGHT */
+
+.leaf-2 {
+    right: 5px;
+    top: 300px;
+
+    transform: rotate(35deg);
+}
+
+
+/* BOTTOM LEFT */
+
+.leaf-3 {
+    left: 20px;
+    bottom: 180px;
+
+    transform: rotate(25deg);
+
+    background: #0D7048;
+}
+
+/* =========================================
+   FORCE PREVIEW DECORATION
+========================================= */
+
+.id-card {
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.preview-decoration {
+    position: absolute !important;
+
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+
+    display: block !important;
+
+    pointer-events: none !important;
+
+    z-index: 999 !important;
+}
+
+
+/* SUN */
+
+.preview-sun {
+    position: absolute !important;
+
+    display: block !important;
+
+    width: 55px !important;
+    height: 55px !important;
+
+    top: 70px !important;
+    right: 55px !important;
+
+    border-radius: 50% !important;
+
+    background: #F4C542 !important;
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    z-index: 9999 !important;
+
+    box-shadow:
+        0 0 0 8px rgba(244, 197, 66, 0.2),
+        0 0 0 16px rgba(244, 197, 66, 0.1) !important;
+}
+
+
+/* LEAVES */
+
+.preview-leaf {
+    position: absolute !important;
+
+    display: block !important;
+
+    width: 90px !important;
+    height: 35px !important;
+
+    border-radius: 100% 0 100% 0 !important;
+
+    background: #4F8F45 !important;
+
+    opacity: 1 !important;
+
+    z-index: 9999 !important;
+}
+
+.leaf-1 {
+    left: 15px !important;
+    top: 180px !important;
+    transform: rotate(-35deg) !important;
+}
+
+.leaf-2 {
+    right: 5px !important;
+    top: 300px !important;
+    transform: rotate(35deg) !important;
+}
+
+.leaf-3 {
+    left: 20px !important;
+    bottom: 180px !important;
+    transform: rotate(25deg) !important;
+}

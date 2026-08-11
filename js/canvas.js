@@ -278,13 +278,100 @@ function drawCardInformation(
     ink
 ) {
 
-    /* -----------------------------------------
+    /* =========================================
+       DECORATIVE TROPICAL ELEMENTS
+    ========================================= */
+
+    // Small sun
+
+    ctx.beginPath();
+
+    ctx.arc(
+        1030,
+        260,
+        55,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fillStyle = yellow;
+
+    ctx.fill();
+
+
+    // Sun rays
+
+    ctx.strokeStyle = yellow;
+
+    ctx.lineWidth = 3;
+
+    for (let i = 0; i < 8; i++) {
+
+        const angle =
+            (Math.PI * 2 / 8) * i;
+
+        const x1 =
+            1030 + Math.cos(angle) * 75;
+
+        const y1 =
+            260 + Math.sin(angle) * 75;
+
+        const x2 =
+            1030 + Math.cos(angle) * 95;
+
+        const y2 =
+            260 + Math.sin(angle) * 95;
+
+        ctx.beginPath();
+
+        ctx.moveTo(x1, y1);
+
+        ctx.lineTo(x2, y2);
+
+        ctx.stroke();
+    }
+
+
+    /* =========================================
+       TROPICAL LEAVES
+    ========================================= */
+
+    drawLeaf(
+        ctx,
+        120,
+        250,
+        180,
+        -0.7,
+        "#4F8F45"
+    );
+
+    drawLeaf(
+        ctx,
+        1030,
+        720,
+        160,
+        0.6,
+        "#78A942"
+    );
+
+    drawLeaf(
+        ctx,
+        170,
+        820,
+        120,
+        0.4,
+        "#0D7048"
+    );
+
+
+    /* =========================================
        NAME
-    ----------------------------------------- */
+    ========================================= */
 
     ctx.fillStyle = ink;
 
-    ctx.font = "bold 70px serif";
+    ctx.font =
+        "bold 70px Georgia, serif";
 
     ctx.fillText(
         name || "YOUR NAME",
@@ -293,72 +380,102 @@ function drawCardInformation(
     );
 
 
-    /* -----------------------------------------
+    /* =========================================
+       STACK LABEL
+    ========================================= */
+
+    ctx.fillStyle = coral;
+
+    ctx.font =
+        "bold 18px monospace";
+
+    ctx.fillText(
+        "BUILDS WITH",
+        90,
+        1215
+    );
+
+
+    /* =========================================
        STACK
-    ----------------------------------------- */
+    ========================================= */
 
     ctx.fillStyle = green;
 
-    ctx.font = "500 28px monospace";
+    ctx.font =
+        "500 28px monospace";
 
     ctx.fillText(
         (stack || "YOUR STACK").toUpperCase(),
         90,
-        1230
+        1255
     );
 
 
-    /* -----------------------------------------
-       LINE
-    ----------------------------------------- */
+    /* =========================================
+       DIVIDER
+    ========================================= */
 
     ctx.fillStyle = ink;
 
     ctx.fillRect(
         90,
-        1270,
+        1290,
         1020,
         4
     );
 
 
-    /* -----------------------------------------
-       BUILDER
-    ----------------------------------------- */
+    /* =========================================
+       BUILDER INFO
+    ========================================= */
 
     ctx.fillStyle = green;
 
-    ctx.font = "500 24px monospace";
+    ctx.font =
+        "500 22px monospace";
 
     ctx.fillText(
         "BUILDER / GOA / INDIA",
         90,
-        1335
+        1345
     );
 
 
-    /* -----------------------------------------
-       YEAR
-    ----------------------------------------- */
+    /* =========================================
+       YEAR BADGE
+    ========================================= */
 
-    ctx.fillStyle = coral;
+    ctx.fillStyle = yellow;
 
-    ctx.font = "bold 90px serif";
+    ctx.fillRect(
+        930,
+        1380,
+        180,
+        85
+    );
+
+
+    ctx.fillStyle = ink;
+
+    ctx.font =
+        "bold 40px monospace";
 
     ctx.fillText(
-        "26",
-        950,
-        1450
+        "HH 26",
+        960,
+        1435
     );
 
 
-    /* -----------------------------------------
-       FOOTER
-    ----------------------------------------- */
+    /* =========================================
+       COORDINATES
+    ========================================= */
 
     ctx.fillStyle = green;
 
-    ctx.font = "500 22px monospace";
+    ctx.font =
+        "500 20px monospace";
 
     ctx.fillText(
         "15°29'N",
@@ -371,4 +488,77 @@ function drawCardInformation(
         930,
         1680
     );
+
+
+    /* =========================================
+       SMALL FOOTER TEXT
+    ========================================= */
+
+    ctx.fillStyle = coral;
+
+    ctx.font =
+        "bold 16px monospace";
+
+    ctx.fillText(
+        "#FRAMEINGOA",
+        90,
+        1725
+    );
+}
+
+function drawLeaf(
+    ctx,
+    x,
+    y,
+    size,
+    rotation,
+    color
+) {
+
+    ctx.save();
+
+    ctx.translate(x, y);
+
+    ctx.rotate(rotation);
+
+    ctx.beginPath();
+
+    ctx.moveTo(0, 0);
+
+    ctx.quadraticCurveTo(
+        size * 0.45,
+        -size * 0.35,
+        size,
+        0
+    );
+
+    ctx.quadraticCurveTo(
+        size * 0.45,
+        size * 0.35,
+        0,
+        0
+    );
+
+    ctx.fillStyle = color;
+
+    ctx.fill();
+
+
+    /* Leaf vein */
+
+    ctx.beginPath();
+
+    ctx.moveTo(0, 0);
+
+    ctx.lineTo(size, 0);
+
+    ctx.strokeStyle = "#F5EFD9";
+
+    ctx.lineWidth = 3;
+
+    ctx.globalAlpha = 0.45;
+
+    ctx.stroke();
+
+    ctx.restore();
 }
