@@ -1,0 +1,754 @@
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.site-nav {
+    min-height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--line);
+
+    position: relative;
+    z-index: 20;
+}
+
+.nav-brand {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+}
+
+.nav-brand span {
+    color: var(--yellow);
+}
+
+.nav-meta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+}
+
+.nav-meta span:last-child {
+    padding: 8px 12px;
+
+    background: var(--yellow);
+    color: var(--bg-dark);
+
+    border: 2px solid var(--bg-dark);
+
+    box-shadow: 4px 4px 0 var(--bg-dark);
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    position: relative;
+
+    min-height: 680px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    padding: 55px 0 90px;
+
+    overflow: hidden;
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+/* Tropical atmosphere */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    right: -250px;
+    top: -180px;
+
+    background: var(--bg-light);
+
+    border-radius: 50%;
+
+    opacity: 0.7;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    left: -180px;
+    bottom: -150px;
+
+    background: var(--leaf);
+
+    border-radius: 50%;
+
+    opacity: 0.25;
+}
+
+
+/* Kicker */
+
+.hero-kicker {
+    position: relative;
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: fit-content;
+
+    margin-bottom: 35px;
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+}
+
+.kicker-dot {
+    width: 9px;
+    height: 9px;
+
+    background: var(--yellow);
+
+    border-radius: 50%;
+}
+
+
+/* Main typography */
+
+.hero-title {
+    position: relative;
+    z-index: 7;
+
+    max-width: 1100px;
+
+    margin-left: 3vw;
+
+    font-family: var(--font-display);
+
+    font-size: clamp(5.5rem, 15vw, 14rem);
+
+    line-height: 0.72;
+
+    letter-spacing: -0.08em;
+
+    text-transform: uppercase;
+}
+
+.hero-title span {
+    display: block;
+
+    margin-left: clamp(
+        55px,
+        10vw,
+        160px
+    );
+
+    color: var(--yellow);
+
+    font-style: italic;
+}
+
+
+/* Description */
+
+.hero-description {
+    position: relative;
+    z-index: 5;
+
+    max-width: 390px;
+
+    margin-top: 60px;
+    margin-left: clamp(20px, 17vw, 250px);
+
+    color: var(--mint);
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* CTA */
+
+.hero-button {
+    position: absolute;
+    z-index: 8;
+
+    right: 7%;
+    bottom: 110px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 190px;
+
+    padding: 18px 20px;
+
+    background: var(--cream);
+    color: var(--bg-dark);
+
+    border: 2px solid var(--bg-dark);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+
+    box-shadow: 8px 8px 0 var(--coral);
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.hero-button:hover {
+    transform: translate(5px, 5px);
+
+    box-shadow: 3px 3px 0 var(--coral);
+}
+
+.button-arrow {
+    font-size: 20px;
+}
+
+
+/* =========================================
+   TROPICAL VISUAL
+========================================= */
+
+.visual-intro {
+    position: relative;
+
+    padding: 110px 0 140px;
+}
+
+
+/* Label */
+
+.visual-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 25px;
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+}
+
+.visual-label span {
+    display: grid;
+    place-items: center;
+
+    width: 28px;
+    height: 28px;
+
+    background: var(--yellow);
+
+    color: var(--bg-dark);
+
+    border-radius: 50%;
+}
+
+
+/* Artwork container */
+
+.visual-frame {
+    position: relative;
+
+    min-height: 620px;
+
+    background: var(--bg-dark);
+
+    border: 2px solid var(--cream);
+
+    overflow: hidden;
+
+    isolation: isolate;
+}
+
+
+/* Tropical SVG will live here */
+
+.visual-frame::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(244, 197, 66, 0.15),
+            transparent 30%
+        );
+
+    z-index: -1;
+}
+
+
+/* Giant typography */
+
+.frame-copy {
+    position: absolute;
+
+    top: 55px;
+    left: 45px;
+
+    display: flex;
+    flex-direction: column;
+
+    font-family: var(--font-display);
+
+    font-size: clamp(4rem, 10vw, 10rem);
+
+    line-height: 0.76;
+
+    letter-spacing: -0.07em;
+
+    color: var(--cream);
+
+    z-index: 3;
+}
+
+.frame-copy strong {
+    margin-left: 15vw;
+
+    color: var(--yellow);
+
+    font-style: italic;
+}
+
+
+/* Center graphic */
+
+.frame-center {
+    position: absolute;
+
+    left: 50%;
+    top: 52%;
+
+    width: 230px;
+    height: 230px;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-8deg);
+
+    background: var(--forest);
+
+    border: 3px solid var(--cream);
+
+    box-shadow:
+        14px 14px 0 var(--coral);
+
+    z-index: 5;
+}
+
+.frame-crosshair {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    color: var(--yellow);
+
+    font-family: var(--font-mono);
+
+    font-size: 70px;
+}
+
+
+/* Bottom information */
+
+.frame-bottom {
+    position: absolute;
+
+    left: 30px;
+    right: 30px;
+    bottom: 25px;
+
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: 14px;
+
+    border-top: 1px solid var(--line);
+
+    color: var(--mint);
+
+    font-family: var(--font-mono);
+    font-size: 9px;
+
+    z-index: 10;
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.intro-section {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 80px 1fr;
+
+    gap: 40px;
+
+    padding: 120px 0 160px;
+
+    border-top: 1px solid var(--line);
+}
+
+.section-number {
+    color: var(--yellow);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+}
+
+.intro-content {
+    max-width: 1000px;
+}
+
+.intro-small {
+    max-width: 320px;
+
+    margin-bottom: 50px;
+
+    color: var(--mint);
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.intro-content h2 {
+    font-family: var(--font-display);
+
+    font-size: clamp(4rem, 9vw, 9rem);
+
+    line-height: 0.82;
+
+    letter-spacing: -0.07em;
+}
+
+.intro-content h2 em {
+    color: var(--coral);
+}
+
+.intro-text {
+    max-width: 430px;
+
+    margin-top: 60px;
+    margin-left: 20%;
+
+    color: var(--mint);
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.site-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    min-height: 100px;
+
+    border-top: 1px solid var(--line);
+
+    color: var(--mint);
+
+    font-family: var(--font-mono);
+    font-size: 9px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .site-nav {
+        min-height: 70px;
+    }
+
+    .nav-meta span:first-child {
+        display: none;
+    }
+
+    .hero {
+        min-height: 680px;
+
+        padding: 70px 0 90px;
+    }
+
+    .hero-title {
+        font-size: clamp(
+            5rem,
+            21vw,
+            9rem
+        );
+    }
+
+    .hero-title span {
+        margin-left: 8vw;
+    }
+
+    .hero-description {
+        margin-left: 5vw;
+        margin-top: 50px;
+    }
+
+    .hero-button {
+        position: relative;
+
+        right: auto;
+        bottom: auto;
+
+        margin-top: 45px;
+        margin-left: 5vw;
+    }
+
+    .visual-intro {
+        padding: 80px 0 100px;
+    }
+
+    .visual-frame {
+        min-height: 500px;
+    }
+
+    .frame-copy {
+        font-size: 18vw;
+
+        top: 35px;
+        left: 25px;
+    }
+
+    .frame-center {
+        width: 155px;
+        height: 155px;
+    }
+
+    .frame-crosshair {
+        font-size: 50px;
+    }
+
+    .intro-section {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+
+        padding: 90px 0 110px;
+    }
+
+    .intro-text {
+        margin-left: 5%;
+    }
+
+    .site-footer {
+        flex-wrap: wrap;
+
+        gap: 18px;
+
+        padding: 30px 0;
+    }
+}
+
+/* =========================================
+   TROPICAL PALM DECORATIONS
+========================================= */
+
+.tropical-decoration {
+    position: absolute;
+
+    width: 320px;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    opacity: 0.95;
+}
+
+.tropical-decoration img {
+    width: 100%;
+    height: auto;
+}
+
+
+/* Left palm */
+
+.tropical-left {
+    left: -130px;
+    bottom: -210px;
+
+    transform:
+        rotate(-8deg)
+        scale(0.8);
+}
+
+/* Right palm */
+
+.tropical-right {
+    right: -75px;
+    bottom: -100px;
+
+    transform:
+        rotate(8deg)
+        scale(1.15);
+}
+
+
+/* Keep text above vegetation */
+
+.hero > *:not(.tropical-decoration) {
+    position: relative;
+    z-index: 5;
+}
+
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+    .tropical-decoration {
+        width: 210px;
+        opacity: 0.75;
+    }
+
+    .tropical-left {
+        left: -90px;
+        bottom: -60px;
+    }
+
+    .tropical-right {
+        right: -90px;
+        bottom: -60px;
+    }
+}
+
+.hero .hero-button {
+    position: absolute;
+    right: 7%;
+    bottom: 110px;
+    z-index: 8;
+}
+
+@media (max-width: 800px) {
+    .hero .hero-button {
+        position: relative;
+        right: auto;
+        bottom: auto;
+    }
+}
+
+/* =========================================
+   TROPICAL CANOPY
+========================================= */
+
+.tropical-canopy {
+    position: absolute;
+
+    left: 50%;
+    bottom: -20px;
+
+    width: 100%;
+    max-width: 1600px;
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+
+    z-index: 2;
+
+    opacity: 0.95;
+}
+
+.tropical-canopy img {
+    width: 100%;
+    height: auto;
+}
+
+
+/* Keep hero content above the canopy */
+
+.hero-kicker,
+.hero-title,
+.hero-description,
+.hero-button {
+    position: relative;
+    z-index: 6;
+}
+
+
+@media (max-width: 800px) {
+
+    .tropical-canopy {
+        width: 150%;
+        bottom: -10px;
+    }
+}
+
+/* =========================================
+   DENSE TROPICAL FOREST
+========================================= */
+
+
+
+
+/* Keep the main typography above the foliage */
+
+.hero-kicker,
+.hero-title,
+.hero-description,
+.hero-button {
+    position: relative;
+    z-index: 7;
+}
+
+
+@media (max-width: 800px) {
+
+    .tropical-forest {
+        width: 300px;
+    }
+
+    .tropical-forest-left {
+        left: -130px;
+        bottom: -50px;
+    }
+}

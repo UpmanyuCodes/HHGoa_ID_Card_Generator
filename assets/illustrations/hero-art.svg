@@ -1,0 +1,170 @@
+<svg
+    width="1200"
+    height="700"
+    viewBox="0 0 1200 700"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+>
+
+    <!-- Background -->
+    <rect width="1200" height="700" fill="#171717"/>
+
+    <!-- Large abstract circle -->
+    <circle
+        cx="860"
+        cy="350"
+        r="250"
+        fill="#FF5C35"
+    />
+
+    <!-- Offset circle -->
+    <circle
+        cx="885"
+        cy="325"
+        r="250"
+        stroke="#C8FF3D"
+        stroke-width="3"
+    />
+
+    <!-- Large cross -->
+    <path
+        d="M600 80V620"
+        stroke="#F2EEE3"
+        stroke-width="2"
+        stroke-dasharray="8 12"
+        opacity="0.5"
+    />
+
+    <path
+        d="M330 350H1050"
+        stroke="#F2EEE3"
+        stroke-width="2"
+        stroke-dasharray="8 12"
+        opacity="0.5"
+    />
+
+    <!-- Main geometric frame -->
+    <rect
+        x="420"
+        y="135"
+        width="430"
+        height="430"
+        transform="rotate(7 420 135)"
+        fill="#4C7DFF"
+        stroke="#F2EEE3"
+        stroke-width="3"
+    />
+
+    <!-- Inner frame -->
+    <rect
+        x="470"
+        y="185"
+        width="330"
+        height="330"
+        transform="rotate(7 470 185)"
+        fill="#171717"
+        stroke="#F2EEE3"
+        stroke-width="2"
+    />
+
+    <!-- Center symbol -->
+    <circle
+        cx="635"
+        cy="350"
+        r="85"
+        fill="#C8FF3D"
+    />
+
+    <circle
+        cx="635"
+        cy="350"
+        r="52"
+        fill="#171717"
+    />
+
+    <path
+        d="M635 285V415"
+        stroke="#F2EEE3"
+        stroke-width="3"
+    />
+
+    <path
+        d="M570 350H700"
+        stroke="#F2EEE3"
+        stroke-width="3"
+    />
+
+    <!-- Decorative star -->
+    <path
+        d="M170 100
+           L182 132
+           L215 144
+           L182 156
+           L170 190
+           L158 156
+           L125 144
+           L158 132
+           Z"
+        fill="#C8FF3D"
+        stroke="#171717"
+        stroke-width="3"
+    />
+
+    <!-- Small circle -->
+    <circle
+        cx="1020"
+        cy="110"
+        r="38"
+        fill="#4C7DFF"
+        stroke="#F2EEE3"
+        stroke-width="3"
+    />
+
+    <!-- Bottom arrows -->
+    <path
+        d="M90 585H300"
+        stroke="#F2EEE3"
+        stroke-width="3"
+    />
+
+    <path
+        d="M280 565L300 585L280 605"
+        stroke="#F2EEE3"
+        stroke-width="3"
+    />
+
+    <!-- Decorative labels -->
+    <text
+        x="90"
+        y="540"
+        fill="#F2EEE3"
+        font-family="monospace"
+        font-size="13"
+        letter-spacing="2"
+    >
+        BUILDER / 001
+    </text>
+
+    <text
+        x="930"
+        y="620"
+        fill="#C8FF3D"
+        font-family="monospace"
+        font-size="13"
+        letter-spacing="2"
+    >
+        IDENTITY
+    </text>
+
+    <!-- Tiny coordinate marks -->
+    <text
+        x="92"
+        y="670"
+        fill="#77736B"
+        font-family="monospace"
+        font-size="10"
+    >
+        15°12'N / 74°05'E
+    </text>
+
+</svg>

@@ -1,618 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HH GOA 2026 — Builder ID Generator</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --sky-top:#F6C445;
-    --sky-mid:#F2793B;
-    --sky-bottom:#E14876;
-    --sea:#0F6E66;
-    --sea-deep:#0B4A45;
-    --sea-black:#0A2E2B;
-    --cream:#FFF3DE;
-    --ink:#1B2E2A;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:
-      radial-gradient(1100px 620px at 12% -12%, #F6C445 0%, transparent 55%),
-      radial-gradient(900px 620px at 108% 8%, #E14876 0%, transparent 50%),
-      var(--cream);
-    min-height:100vh;
-    font-family:'JetBrains Mono',monospace;
-    color:var(--ink);
-    padding:28px 16px 80px;
-  }
-  .wrap{max-width:1100px;margin:0 auto;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  header{text-align:center;margin-bottom:34px;}
-  .eyebrow{
-    font-size:11px;letter-spacing:.3em;text-transform:uppercase;
-    color:var(--sky-bottom);font-weight:700;
-  }
-  h1{
-    font-family:'Alfa Slab One',serif;font-weight:400;
-    font-size:clamp(26px,4.8vw,46px);
-    margin:12px 0 8px;letter-spacing:-0.01em;color:var(--sea-deep);
-    line-height:1.06;text-shadow:3px 3px 0 var(--sky-top);
-  }
-  .sub{color:#3d5652;font-size:13.5px;max-width:520px;margin:0 auto;line-height:1.6;}
+    <title>Builder ID — Goa</title>
+    <meta
+        name="description"
+        content="Create your Builder ID for Hacker House Goa."
+    >
 
-  .stage{display:grid;grid-template-columns:1fr 1.05fr;gap:26px;align-items:start;}
-  @media (max-width:860px){ .stage{grid-template-columns:1fr;} }
-
-  .panel{
-    background:var(--sea-deep);
-    border:1px solid rgba(255,243,222,0.14);
-    border-radius:16px;padding:22px;
-    color:var(--cream);
-  }
-  h2.panel-title{font-family:'Alfa Slab One',serif;font-weight:400;font-size:17px;margin:0 0 4px;color:var(--sky-top);}
-  .panel-sub{font-size:11.5px;color:#9fc4bd;margin:0 0 16px;line-height:1.5;}
-
-  label{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#9fc4bd;margin:14px 0 6px;font-weight:600;}
-  label:first-of-type{margin-top:0;}
-  input[type=text]{
-    width:100%;background:rgba(0,0,0,.22);border:1px solid rgba(255,243,222,.2);
-    border-radius:8px;padding:11px 12px;color:var(--cream);font-family:'JetBrains Mono',monospace;
-    font-size:13.5px;outline:none;
-  }
-  input[type=text]:focus{border-color:var(--sky-mid);}
-  .field-row{display:flex;gap:10px;}
-  .field-row > div{flex:1;}
-
-  .reroll-row{display:flex;gap:8px;align-items:center;margin-top:6px;}
-  .chip-preview{
-    flex:1;background:rgba(246,196,69,.1);border:1px dashed rgba(246,196,69,.5);
-    border-radius:8px;padding:9px 11px;font-size:12.5px;color:var(--sky-top);font-weight:600;
-  }
-  .icon-btn{
-    background:rgba(225,72,118,.16);border:1px solid var(--sky-bottom);color:#ff9ab8;
-    border-radius:8px;padding:9px 11px;cursor:pointer;font-size:12px;font-weight:700;
-    font-family:'JetBrains Mono',monospace;white-space:nowrap;
-  }
-  .icon-btn:hover{background:rgba(225,72,118,.28);}
-
-  .dropzone{
-    border:1.5px dashed rgba(246,196,69,.5);border-radius:12px;padding:20px;
-    text-align:center;cursor:pointer;margin-top:18px;transition:border-color .2s,background .2s;
-  }
-  .dropzone:hover,.dropzone.drag{border-color:var(--sky-top);background:rgba(246,196,69,.06);}
-  .dropzone svg{width:26px;height:26px;margin-bottom:6px;}
-  .dropzone p{margin:2px 0;font-size:13px;color:var(--cream);}
-  .dropzone .fmt{font-size:10.5px;color:#8fb5ae;margin-top:4px;}
-  input[type=file]{display:none;}
-
-  .actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
-  .btn{
-    font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12.5px;
-    padding:12px 16px;border-radius:9px;border:none;cursor:pointer;
-    display:inline-flex;align-items:center;gap:8px;transition:transform .12s,filter .12s;
-    letter-spacing:.02em;
-  }
-  .btn:active{transform:scale(.97);}
-  .btn-primary{background:var(--sky-mid);color:#2a1305;}
-  .btn-primary:hover{filter:brightness(1.08);}
-  .btn-ghost{background:transparent;color:var(--cream);border:1px solid rgba(255,243,222,.3);}
-  .btn-ghost:hover{border-color:var(--cream);}
-  .btn[disabled]{opacity:.35;cursor:not-allowed;}
-
-  .canvas-frame{
-    position:relative;width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;
-    background:repeating-linear-gradient(45deg,#0d5a53,#0d5a53 10px,#0a4d47 10px,#0a4d47 20px);
-    display:flex;align-items:center;justify-content:center;
-  }
-  #outputCanvas{width:100%;height:100%;display:block;}
-  .placeholder-msg{position:absolute;color:#7fada4;font-size:12.5px;text-align:center;padding:0 30px;line-height:1.6;}
-
-  .status-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:11px;color:#8fb5ae;}
-  .live{display:inline-flex;align-items:center;gap:6px;}
-  .dot{width:6px;height:6px;border-radius:50%;background:var(--sky-top);box-shadow:0 0 6px var(--sky-top);}
-
-  .caption-box{
-    background:rgba(0,0,0,.22);border:1px solid rgba(255,243,222,.14);border-radius:10px;
-    padding:13px;font-size:12.5px;line-height:1.6;color:var(--cream);margin:16px 0 14px;white-space:pre-wrap;
-  }
-  .tag{color:var(--sky-bottom);font-weight:700;}
-
-  .share-grid{display:flex;flex-direction:column;gap:9px;}
-  .share-btn{
-    display:flex;align-items:center;gap:12px;padding:12px 13px;border-radius:10px;
-    border:1px solid rgba(255,243,222,.16);background:rgba(255,243,222,.03);cursor:pointer;
-    color:var(--cream);font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:700;
-    text-align:left;width:100%;transition:background .15s,border-color .15s;
-  }
-  .share-btn:hover{background:rgba(255,243,222,.08);border-color:rgba(255,243,222,.3);}
-  .share-btn[disabled]{opacity:.35;cursor:not-allowed;}
-  .share-btn .ic{width:19px;height:19px;flex-shrink:0;}
-  .share-btn small{display:block;font-weight:400;color:#8fb5ae;font-size:10.5px;margin-top:2px;}
-
-  .toast{
-    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
-    background:var(--sky-top);color:#2a1305;padding:10px 18px;border-radius:8px;
-    font-size:12.5px;font-weight:700;opacity:0;pointer-events:none;
-    transition:opacity .25s,transform .25s;z-index:50;font-family:'JetBrains Mono',monospace;
-  }
-  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-  footer{text-align:center;margin-top:40px;font-size:10.5px;color:#7a6a52;letter-spacing:.05em;}
-</style>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
+
 <body>
-<div class="wrap">
 
-  <header>
-    <div class="eyebrow">Task #1 · Builder ID</div>
-    <h1>HH GOA<br>Builder ID Generator</h1>
-    <p class="sub">Upload a photo, fill in your details, get your Hacker House Goa 2026 ID card — download it or ship it straight to X.</p>
-  </header>
-
-  <div class="stage">
-
-    <div class="panel">
-      <h2 class="panel-title">01 / Your details</h2>
-      <p class="panel-sub">Everything renders locally in your browser — nothing is uploaded to a server.</p>
-
-      <label for="nameInput">Name</label>
-      <input type="text" id="nameInput" placeholder="e.g. Upmanyu Sharma" maxlength="28">
-
-      <div class="field-row">
-        <div>
-          <label for="stackInput">Stack / role</label>
-          <input type="text" id="stackInput" placeholder="e.g. Full-Stack, ML" maxlength="22">
+    <!--NAVIGATION-->
+    <header class="site-nav">
+        <div class="nav-brand">
+            HH<span>/</span>GOA
         </div>
-      </div>
 
-      <label>Builder class</label>
-      <div class="reroll-row">
-        <div class="chip-preview" id="builderClassPreview">TERMINAL NATIVE</div>
-        <button class="icon-btn" id="rerollBtn" type="button">⟳ Reroll</button>
-      </div>
+        <div class="nav-meta">
+            <span>BUILDER ID</span>
+            <span>2026</span>
+        </div>
+    </header>
 
-      <label>Photo</label>
-      <div class="dropzone" id="dropzone">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#F6C445" stroke-width="1.6"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
-        <p><strong>Tap to choose</strong> or drag a photo here</p>
-        <div class="fmt">JPG · PNG · HEIC — any aspect ratio fits, nothing gets cropped</div>
-      </div>
-      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/heic,image/heif,.heic,.heif">
 
-      <div class="actions">
-        <button class="btn btn-primary" id="downloadBtn" disabled>Download ID card</button>
-        <button class="btn btn-ghost" id="resetBtn" disabled>Start over</button>
-      </div>
-    </div>
+    <!--HERO-->
+    <main>
 
-    <div class="panel">
-      <h2 class="panel-title">02 / Preview & share</h2>
-      <p class="panel-sub">Card updates live as you type. Every share carries the tracked hashtag.</p>
+        <section class="hero">
 
-      <div class="canvas-frame" id="canvasFrame">
-        <div class="placeholder-msg" id="placeholderMsg">Fill in your name and drop a photo — your ID card renders here instantly.</div>
-        <canvas id="outputCanvas" width="1200" height="1500" style="display:none;"></canvas>
-      </div>
-
-      <div class="status-row">
-        <span id="statusText">Waiting for details</span>
-        <span class="live" id="liveBadge" style="visibility:hidden;"><span class="dot"></span> Live</span>
-      </div>
-
-      <div class="caption-box" id="captionBox">Locked in for HH GOA 2026 🌴💻 Just built my Builder ID — 500 elite builders, 4 days, the ocean at our doorstep. <span class="tag">#FrameInGoa</span></div>
-
-      <div class="share-grid">
-        <button class="share-btn" id="shareX" disabled>
-          <svg class="ic" viewBox="0 0 24 24" fill="#FFF3DE"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-6.9l-5.4-6.9L4.8 22H1.7l8.1-9.3L1 2h7l4.9 6.3L18.9 2Zm-1.2 18h1.9L7.4 4H5.4l12.3 16Z"/></svg>
-          <span>Share to X<small>Opens a pre-filled tweet — attach the downloaded image</small></span>
-        </button>
-      </div>
-    </div>
-
-  </div>
-
-  <footer>HH GOA 2026 · GOA, INDIA · 28–31 OCT · Hacker House · #FrameInGoa</footer>
+            <!-- Tropical atmosphere -->
+<div class="tropical-decoration tropical-left">
+    <img
+        src="assets/illustrations/palm-left.svg"
+        alt=""
+        aria-hidden="true"
+    >
 </div>
 
-<div class="toast" id="toast"></div>
-
-<script>
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-const canvas = document.getElementById('outputCanvas');
-const ctx = canvas.getContext('2d');
-const placeholderMsg = document.getElementById('placeholderMsg');
-const statusText = document.getElementById('statusText');
-const liveBadge = document.getElementById('liveBadge');
-const downloadBtn = document.getElementById('downloadBtn');
-const resetBtn = document.getElementById('resetBtn');
-const toast = document.getElementById('toast');
-const nameInput = document.getElementById('nameInput');
-const stackInput = document.getElementById('stackInput');
-const builderClassPreview = document.getElementById('builderClassPreview');
-const rerollBtn = document.getElementById('rerollBtn');
-
-const HASHTAG = "#FrameInGoa";
-const CARD_W = 1200, CARD_H = 1500;
-let userImg = null;
-let currentClass = "TERMINAL NATIVE";
-let serial = String(Math.floor(Math.random()*899)+100);
-
-const BUILDER_CLASSES = [
-  "TERMINAL NATIVE","SHIP-IT SPECIALIST","0-TO-1 OPERATOR","LATE NIGHT COMMITTER",
-  "PROD WHISPERER","SIGNAL OVER NOISE","FULL-STACK CORSAIR","EDGE CASE HUNTER",
-  "TIDE-TIMED SHIPPER","FIBER-SPEED FOUNDER","MERGE CONFLICT SLAYER","STACK OVERFLOW SURVIVOR"
-];
-
-function rollBuilderClass(){
-  let next = currentClass;
-  while(next === currentClass){
-    next = BUILDER_CLASSES[Math.floor(Math.random()*BUILDER_CLASSES.length)];
-  }
-  currentClass = next;
-  builderClassPreview.textContent = currentClass;
-  scheduleRender();
-}
-rerollBtn.addEventListener('click', rollBuilderClass);
-
-function showToast(msg){
-  toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(()=>toast.classList.remove('show'), 2200);
-}
-
-async function ensureFonts(){
-  await Promise.all([
-    document.fonts.load('400 90px "Alfa Slab One"'),
-    document.fonts.load('400 46px "Alfa Slab One"'),
-    document.fonts.load('700 62px Fraunces'),
-    document.fonts.load('700 30px "JetBrains Mono"'),
-    document.fonts.load('600 24px "JetBrains Mono"'),
-    document.fonts.load('700 46px "Noto Sans Devanagari"'),
-  ]).catch(()=>{});
-}
-
-function roundRectAt(x,y,w,h,r){
-  ctx.beginPath();
-  ctx.moveTo(x+r,y);
-  ctx.arcTo(x+w,y,x+w,y+h,r);
-  ctx.arcTo(x+w,y+h,x,y+h,r);
-  ctx.arcTo(x,y+h,x,y,r);
-  ctx.arcTo(x,y,x+w,y,r);
-  ctx.closePath();
-}
-
-function drawTicketNotch(cx, y, r){
-  ctx.save();
-  ctx.globalCompositeOperation = 'destination-out';
-  ctx.beginPath();
-  ctx.arc(cx, y, r, 0, Math.PI*2);
-  ctx.fill();
-  ctx.restore();
-}
-
-function fitText(text, cx, y, maxW, baseSize, weight, family){
-  let size = baseSize;
-  ctx.font = `${weight} ${size}px ${family}`;
-  while(ctx.measureText(text).width > maxW && size > 26){
-    size -= 2;
-    ctx.font = `${weight} ${size}px ${family}`;
-  }
-  ctx.fillText(text, cx, y);
-}
-
-function drawSunburst(cx, cy, rInner, rOuter, rayCount, colorA, colorB){
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(cx, cy, rOuter, 0, Math.PI*2);
-  ctx.clip();
-  const step = (Math.PI*2)/rayCount;
-  for(let i=0;i<rayCount;i++){
-    ctx.beginPath();
-    ctx.moveTo(cx,cy);
-    ctx.arc(cx, cy, rOuter, i*step, i*step+step/2);
-    ctx.closePath();
-    ctx.fillStyle = (i%2===0) ? colorA : colorB;
-    ctx.fill();
-  }
-  ctx.restore();
-}
-
-function drawPalmSilhouette(x, y, scale, color){
-  ctx.save();
-  ctx.translate(x,y);
-  ctx.scale(scale,scale);
-  ctx.fillStyle = color;
-  // trunk
-  ctx.beginPath();
-  ctx.moveTo(-6,0);
-  ctx.quadraticCurveTo(10,-40,-2,-90);
-  ctx.quadraticCurveTo(6,-40,10,0);
-  ctx.closePath();
-  ctx.fill();
-  // fronds
-  const frondAngles = [-160,-125,-95,-65,-30,10];
-  frondAngles.forEach(a=>{
-    ctx.save();
-    ctx.translate(-2,-90);
-    ctx.rotate(a*Math.PI/180);
-    ctx.beginPath();
-    ctx.moveTo(0,0);
-    ctx.quadraticCurveTo(40,-6,74,4);
-    ctx.quadraticCurveTo(40,10,0,0);
-    ctx.closePath();
-    ctx.fill();
-    ctx.restore();
-  });
-  ctx.restore();
-}
-
-function drawWaveBand(y, height, color){
-  ctx.save();
-  ctx.fillStyle = color;
-  ctx.beginPath();
-  ctx.moveTo(0, y+30);
-  for(let x=0;x<=CARD_W;x+=60){
-    const yy = y + 30*Math.sin((x/CARD_W)*Math.PI*4);
-    ctx.lineTo(x, yy);
-  }
-  ctx.lineTo(CARD_W, y+height);
-  ctx.lineTo(0, y+height);
-  ctx.closePath();
-  ctx.fill();
-  ctx.restore();
-}
-
-function drawCard(){
-  ctx.clearRect(0,0,CARD_W,CARD_H);
-
-  // retro sunset sky gradient background
-  const sky = ctx.createLinearGradient(0,0,0,CARD_H);
-  sky.addColorStop(0,'#F6C445');
-  sky.addColorStop(0.45,'#F2793B');
-  sky.addColorStop(1,'#E14876');
-  ctx.fillStyle = sky;
-  ctx.fillRect(0,0,CARD_W,CARD_H);
-
-  const cx = CARD_W/2;
-
-  // sunburst behind header
-  drawSunburst(cx, 190, 0, 340, 24, 'rgba(255,255,255,0.10)', 'rgba(255,255,255,0)');
-
-  // ---- HEADER: HACKER HOUSE lockup ----
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'alphabetic';
-  ctx.fillStyle = '#0B4A45';
-  ctx.font = '400 100px "Alfa Slab One", serif';
-  ctx.fillText('HACKER', cx, 150);
-  ctx.fillText('HOUSE', cx, 250);
-
-  const badgeW = 220, badgeH = 78, badgeY = 166;
-  ctx.save();
-  ctx.translate(cx, badgeY + badgeH/2);
-  ctx.rotate(-0.035);
-  ctx.fillStyle = '#E14876';
-  roundRectAt(-badgeW/2,-badgeH/2,badgeW,badgeH,14);
-  ctx.fill();
-  ctx.strokeStyle = '#FFF3DE';
-  ctx.lineWidth = 3;
-  roundRectAt(-badgeW/2,-badgeH/2,badgeW,badgeH,14);
-  ctx.stroke();
-  ctx.fillStyle = '#FFF3DE';
-  ctx.font = '700 44px "Noto Sans Devanagari", sans-serif';
-  ctx.textBaseline = 'middle';
-  ctx.fillText('गोवा', 0, 4);
-  ctx.restore();
-
-  ctx.font = '600 22px "JetBrains Mono", monospace';
-  ctx.fillStyle = '#0B4A45';
-  ctx.textBaseline = 'alphabetic';
-  ctx.fillText('GOA, INDIA · 28–31 OCT 2026', cx, 306);
-
-  // dashed tear-line
-  const tearY = 344;
-  ctx.save();
-  ctx.strokeStyle = 'rgba(11,74,69,0.45)';
-  ctx.lineWidth = 3;
-  ctx.setLineDash([10,10]);
-  ctx.beginPath();
-  ctx.moveTo(60,tearY);
-  ctx.lineTo(CARD_W-60,tearY);
-  ctx.stroke();
-  ctx.restore();
-  drawTicketNotch(30, tearY, 22);
-  drawTicketNotch(CARD_W-30, tearY, 22);
-
-// ---- CENTERED PHOTO ----
-
-const MAX_PHOTO_W = 1040;
-const MAX_PHOTO_H = 640;
-
-let drawW = 650;
-let drawH = 640;
-
-if (userImg) {
-
-  const iw = userImg.width;
-  const ih = userImg.height;
-
-  // Scale image proportionally so it fits inside
-  // the maximum photo area.
-  const scale = Math.min(
-    MAX_PHOTO_W / iw,
-    MAX_PHOTO_H / ih
-  );
-
-  drawW = iw * scale;
-  drawH = ih * scale;
-}
-
-// Center the photo horizontally
-const drawX = (CARD_W - drawW) / 2;
-
-// Center the photo vertically within the photo area
-const photoAreaY = 378;
-const drawY = photoAreaY + (MAX_PHOTO_H - drawH) / 2;
+<div class="tropical-decoration tropical-right">
+    <img
+        src="assets/illustrations/palm-right.svg"
+        alt=""
+        aria-hidden="true"
+    >
+</div>
 
 
-// Draw photo
-if (userImg) {
+<div class="tropical-canopy">
+    <img
+        src="assets/illustrations/tropical-canopy.svg"
+        alt=""
+        aria-hidden="true"
+    >
+</div>
 
-  ctx.save();
 
-  // Small shadow directly behind the actual photo
-  ctx.shadowColor = 'rgba(11,46,42,0.25)';
-  ctx.shadowBlur = 18;
-  ctx.shadowOffsetY = 6;
+            <div class="hero-kicker">
+                <span class="kicker-dot"></span>
+                OFFICIAL BUILDER ID GENERATOR
+            </div>
 
-  ctx.drawImage(
-    userImg,
-    0,
-    0,
-    userImg.width,
-    userImg.height,
-    drawX,
-    drawY,
-    drawW,
-    drawH
-  );
+            <h1 class="hero-title">
+                BUILD
+                <span>YOUR</span>
+                ID.
+            </h1>
 
-  ctx.restore();
+            <p class="hero-description">
+                Your face. Your stack. Your builder identity.
+                Create your own Hacker House Goa ID.
+            </p>
 
-  // Very subtle photo border
-  ctx.strokeStyle = '#FFF3DE';
-  ctx.lineWidth = 4;
+            <a href="pages/builder.html" class="hero-button">
+                <span>CREATE ID</span>
+                <span class="button-arrow">↗</span>
+            </a>
 
-  ctx.strokeRect(
-    drawX,
-    drawY,
-    drawW,
-    drawH
-  );
-}
-  // ---- INFO BLOCK ----
-  const infoY = photoAreaY + MAX_PHOTO_H + 64;
-  ctx.textAlign = 'center';
+        </section>
 
-  const displayName = (nameInput.value.trim() || 'YOUR NAME HERE').toUpperCase();
-  ctx.fillStyle = '#0B4A45';
-  ctx.textBaseline = 'alphabetic';
-  fitText(displayName, cx, infoY, CARD_W-160, 60, '700', 'Fraunces, serif');
 
-  const displayStack = (stackInput.value.trim() || 'BUILDER').toUpperCase();
-  ctx.fillStyle = '#7A2A3E';
-  ctx.font = '600 26px "JetBrains Mono", monospace';
-  ctx.fillText(displayStack, cx, infoY+44);
+        <!-- VISUAL PLACEHOLDER -->
 
-  const pillY = infoY + 74;
-  ctx.font = '700 24px "JetBrains Mono", monospace';
-  const pillText = 'CLASS: ' + currentClass;
-  const pillPad = 26;
-  const pillTextW = ctx.measureText(pillText).width;
-  const pillW = pillTextW + pillPad*2;
-  const pillH = 54;
-  ctx.save();
-  ctx.fillStyle = '#0B4A45';
-  roundRectAt(cx-pillW/2, pillY, pillW, pillH, pillH/2);
-  ctx.fill();
-  ctx.fillStyle = '#F6C445';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(pillText, cx, pillY+pillH/2+2);
-  ctx.restore();
+        <section class="visual-intro">
 
-  // ---- FOOTER: teal wave band + palm + hashtag ----
-  const waveY = pillY + pillH + 40;
-  drawWaveBand(waveY, CARD_H-waveY, '#0F6E66');
-  drawWaveBand(waveY+14, CARD_H-waveY-14, '#0B4A45');
+            <div class="visual-label">
+                <span>01</span>
+                THE BUILDER
+            </div>
 
-  drawPalmSilhouette(150, CARD_H-40, 0.85, 'rgba(255,243,222,0.5)');
-  drawPalmSilhouette(CARD_W-150, CARD_H-40, -0.85, 'rgba(255,243,222,0.5)');
+            <div class="visual-frame">
 
-  ctx.fillStyle = '#FFF3DE';
-  ctx.font = '700 22px "JetBrains Mono", monospace';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'alphabetic';
-  ctx.fillText('#FrameInGoa  ·  hhgoa.com', cx, CARD_H-42);
-}
+                <div class="frame-copy">
+                    <span>WHO ARE</span>
+                    <strong>YOU?</strong>
+                </div>
 
-let renderScheduled = false;
-function scheduleRender(){
-  if(renderScheduled) return;
-  renderScheduled = true;
-  requestAnimationFrame(async ()=>{
-    renderScheduled = false;
-    await ensureFonts();
-    drawCard();
-    updateUIState();
-  });
-}
+                <div class="frame-center">
+                    <div class="frame-crosshair">+</div>
+                </div>
 
-function updateUIState(){
-  const ready = !!userImg;
-  placeholderMsg.style.display = ready ? 'none' : 'block';
-  canvas.style.display = ready ? 'block' : 'none';
-  liveBadge.style.visibility = ready ? 'visible' : 'hidden';
-  statusText.textContent = ready ? 'Live — updates as you type' : 'Waiting for a photo';
-  downloadBtn.disabled = !ready;
-  resetBtn.disabled = !ready;
-  document.getElementById('shareX').disabled = !ready;
-}
+                <div class="frame-bottom">
+                    <span>PHOTO</span>
+                    <span>STACK</span>
+                    <span>IDENTITY</span>
+                </div>
 
-function handleFile(file){
-  if(!file) return;
-  statusText.textContent = 'Processing photo…';
-  const url = URL.createObjectURL(file);
-  const img = new Image();
-  img.onload = function(){
-    userImg = img;
-    scheduleRender();
-    URL.revokeObjectURL(url);
-  };
-  img.onerror = function(){
-    statusText.textContent = 'Could not read that file — try a JPG, PNG, or HEIC image.';
-    URL.revokeObjectURL(url);
-  };
-  img.src = url;
-}
+            </div>
 
-dropzone.addEventListener('click', ()=>fileInput.click());
-fileInput.addEventListener('change', e=>handleFile(e.target.files[0]));
-['dragenter','dragover'].forEach(ev=>dropzone.addEventListener(ev, e=>{e.preventDefault(); dropzone.classList.add('drag');}));
-['dragleave','drop'].forEach(ev=>dropzone.addEventListener(ev, e=>{e.preventDefault(); dropzone.classList.remove('drag');}));
-dropzone.addEventListener('drop', e=>handleFile(e.dataTransfer.files[0]));
+        </section>
 
-nameInput.addEventListener('input', scheduleRender);
-stackInput.addEventListener('input', scheduleRender);
 
-downloadBtn.addEventListener('click', ()=>{
-  const link = document.createElement('a');
-  const safeName = (nameInput.value.trim() || 'builder').toLowerCase().replace(/[^a-z0-9]+/g,'-');
-  link.download = `hh-goa-2026-id-${safeName}.png`;
-  link.href = canvas.toDataURL('image/png');
-  link.click();
-  showToast('Downloaded — attach it to your tweet');
-});
+        <!--INTRO-->
 
-resetBtn.addEventListener('click', ()=>{
-  userImg = null;
-  nameInput.value = '';
-  stackInput.value = '';
-  fileInput.value = '';
-  scheduleRender();
-});
+        <section class="intro-section">
 
-document.getElementById('shareX').addEventListener('click', ()=>{
-  const nm = nameInput.value.trim() || 'a builder';
-  const text = encodeURIComponent(`Locked in for HH GOA 2026 🌴💻 Just built my Builder ID as ${nm} — 500 elite builders, 4 days, the ocean at our doorstep. ${HASHTAG}`);
-  window.open(`https://x.com/intent/tweet?text=${text}`, '_blank');
-  showToast('Tweet window opened — attach the downloaded image');
-});
+            <div class="section-number">02</div>
 
-scheduleRender();
-</script>
+            <div class="intro-content">
+
+                <p class="intro-small">
+                    A DIGITAL BADGE FOR PEOPLE
+                    WHO BUILD THINGS.
+                </p>
+
+                <h2>
+                    NOT JUST A
+                    <em>PROFILE.</em>
+                </h2>
+
+                <p class="intro-text">
+                    Add your photo, tell us what you build,
+                    and create an identity made for the
+                    builders of Goa.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!--FOOTER-->
+
+    <footer class="site-footer">
+
+        <span>HH / GOA</span>
+
+        <span>BUILD SOMETHING.</span>
+
+        <span>2026</span>
+
+    </footer>
+
+
+    <script src="js/home.js"></script>
+
 </body>
 </html>

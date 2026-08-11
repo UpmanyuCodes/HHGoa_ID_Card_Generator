@@ -1,0 +1,115 @@
+<svg
+    width="420"
+    height="700"
+    viewBox="0 0 420 700"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+>
+
+    <!-- PALM TRUNK -->
+    <path
+        d="M175 700
+           C190 590 190 470 205 360
+           C215 285 235 230 260 190"
+        stroke="#0A5A3C"
+        stroke-width="34"
+        stroke-linecap="round"
+    />
+
+    <!-- TRUNK HIGHLIGHT -->
+    <path
+        d="M190 700
+           C205 570 205 470 220 365
+           C228 300 245 240 267 195"
+        stroke="#78A942"
+        stroke-width="8"
+        stroke-linecap="round"
+        opacity="0.7"
+    />
+
+    <!-- LEAF 1 -->
+    <path
+        d="M265 195
+           C210 125 120 95 35 105
+           C120 145 190 175 265 205Z"
+        fill="#0D7048"
+    />
+
+    <!-- LEAF 2 -->
+    <path
+        d="M265 195
+           C220 105 195 45 205 5
+           C255 70 275 125 275 195Z"
+        fill="#78A942"
+    />
+
+    <!-- LEAF 3 -->
+    <path
+        d="M270 195
+           C285 105 340 50 405 25
+           C370 100 325 160 275 205Z"
+        fill="#0A5A3C"
+    />
+
+    <!-- LEAF 4 -->
+    <path
+        d="M265 205
+           C330 160 385 160 420 180
+           C365 210 320 220 265 215Z"
+        fill="#4F8F45"
+    />
+
+    <!-- LEAF 5 -->
+    <path
+        d="M260 200
+           C175 190 100 220 50 275
+           C135 250 200 225 270 210Z"
+        fill="#0D7048"
+    />
+
+    <!-- LEAF 6 -->
+    <path
+        d="M268 195
+           C225 145 170 135 105 145
+           C165 180 215 195 270 205Z"
+        fill="#4F8F45"
+    />
+
+    <!-- LEAF VEINS -->
+    <path
+        d="M265 200L55 110"
+        stroke="#B9D9A3"
+        stroke-width="3"
+        opacity="0.45"
+    />
+
+    <path
+        d="M270 200L208 15"
+        stroke="#B9D9A3"
+        stroke-width="3"
+        opacity="0.45"
+    />
+
+    <path
+        d="M270 200L398 35"
+        stroke="#B9D9A3"
+        stroke-width="3"
+        opacity="0.4"
+    />
+
+    <!-- SMALL TROPICAL FRUIT -->
+    <circle
+        cx="290"
+        cy="215"
+        r="10"
+        fill="#F4C542"
+    />
+
+    <circle
+        cx="308"
+        cy="207"
+        r="8"
+        fill="#F06A4F"
+    />
+
+</svg>
