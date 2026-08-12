@@ -193,9 +193,18 @@ shareButton.addEventListener("click", async () => {
     const stack =
         stackInput.value.trim();
 
+    const displayName =
+        name || "Your Name";
+
+    const displayStack =
+        stack || "Your Stack";
+
     const caption =
         `Just built my Builder ID for Hacker House Goa 2026! 🌴⚡\n\n` +
-        `#FrameInGoa`;
+        `Name: ${displayName}\n` +
+        `Stack: ${displayStack}\n\n` +
+        `#FrameInGoa #HHGoa2026\n` +
+        `hhgoa.com`;
 
     const xUrl =
         "https://x.com/intent/tweet?text=" +
