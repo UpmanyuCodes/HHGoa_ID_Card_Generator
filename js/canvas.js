@@ -76,26 +76,57 @@ async function createBuilderCanvas({
 
 
     /* -----------------------------------------
-       HEADER TEXT
-    ----------------------------------------- */
+   HEADER TEXT
+----------------------------------------- */
 
-    ctx.fillStyle = cream;
+ctx.fillStyle = cream;
 
-    ctx.font = "500 30px monospace";
+ctx.font = "bold 42px monospace";
 
-    ctx.fillText(
-        "HH / GOA",
-        70,
-        85
-    );
+ctx.fillText(
+    "HH / GOA",
+    65,
+    95
+);
 
-    ctx.fillStyle = yellow;
 
-    ctx.fillText(
-        "BUILDER",
-        920,
-        85
-    );
+/* Builder label */
+
+ctx.fillStyle = yellow;
+
+ctx.font = "bold 38px monospace";
+
+ctx.fillText(
+    "BUILDER",
+    865,
+    95
+);
+
+
+/* Year */
+
+ctx.fillStyle = cream;
+
+ctx.font = "bold 24px monospace";
+
+ctx.fillText(
+    "2026",
+    1025,
+    135
+);
+
+
+/* Small ID marker */
+
+ctx.fillStyle = yellow;
+
+ctx.font = "bold 20px monospace";
+
+ctx.fillText(
+    "ID / 001",
+    65,
+    140
+);
 
 
     /* -----------------------------------------
@@ -149,7 +180,17 @@ async function createBuilderCanvas({
             photoH
         );
     }
+/* PHOTO FRAME */
 
+ctx.strokeStyle = ink;
+ctx.lineWidth = 5;
+
+ctx.strokeRect(
+    photoX,
+    photoY,
+    photoW,
+    photoH
+);
 
     /* -----------------------------------------
        CARD INFORMATION

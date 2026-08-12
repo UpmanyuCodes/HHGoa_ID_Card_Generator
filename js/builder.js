@@ -2,13 +2,61 @@
    BUILDER STATE
 ========================================= */
 
-const nameInput = document.getElementById("builder-name");
-const stackInput = document.getElementById("builder-stack");
-const photoInput = document.getElementById("builder-photo");
+const nameInput =
+    document.getElementById("builder-name");
 
-const idName = document.querySelector(".id-name");
-const idStack = document.querySelector(".id-stack");
-const photoPlaceholder = document.querySelector(".photo-placeholder");
+const stackInput =
+    document.getElementById("builder-stack");
+
+const photoInput =
+    document.getElementById("builder-photo");
+
+const previewCanvas =
+    document.getElementById("builderPreviewCanvas");
+
+
+let currentPhoto = null;
+
+
+/* =========================================
+   PREVIEW RENDER
+========================================= */
+
+async function updatePreview() {
+
+    const name =
+        nameInput.value.trim();
+
+    const stack =
+        stackInput.value.trim();
+
+
+    const canvas =
+        await createBuilderCanvas({
+            name,
+            stack,
+            photo: currentPhoto
+        });
+
+
+    const previewContext =
+        previewCanvas.getContext("2d");
+
+
+    previewContext.clearRect(
+        0,
+        0,
+        previewCanvas.width,
+        previewCanvas.height
+    );
+
+
+    previewContext.drawImage(
+        canvas,
+        0,
+        0
+    );
+}
 
 
 /* =========================================
@@ -17,10 +65,8 @@ const photoPlaceholder = document.querySelector(".photo-placeholder");
 
 nameInput.addEventListener("input", () => {
 
-    const value = nameInput.value.trim();
+    updatePreview();
 
-    idName.textContent =
-        value || "YOUR NAME";
 });
 
 
@@ -30,10 +76,8 @@ nameInput.addEventListener("input", () => {
 
 stackInput.addEventListener("input", () => {
 
-    const value = stackInput.value.trim();
+    updatePreview();
 
-    idStack.textContent =
-        value || "YOUR STACK";
 });
 
 
@@ -43,29 +87,30 @@ stackInput.addEventListener("input", () => {
 
 photoInput.addEventListener("change", (event) => {
 
-    const file = event.target.files[0];
+    const file =
+        event.target.files[0];
 
     if (!file) return;
 
-    const reader = new FileReader();
+
+    const reader =
+        new FileReader();
+
 
     reader.onload = (e) => {
 
-        photoPlaceholder.innerHTML = "";
+        currentPhoto =
+            e.target.result;
 
-        const image = document.createElement("img");
+        updatePreview();
 
-        image.src = e.target.result;
-
-        image.alt = "Builder photo";
-
-        image.className = "builder-photo";
-
-        photoPlaceholder.appendChild(image);
     };
 
+
     reader.readAsDataURL(file);
+
 });
+
 
 /* =========================================
    GENERATE ID
@@ -73,6 +118,7 @@ photoInput.addEventListener("change", (event) => {
 
 const generateButton =
     document.querySelector(".generate-button");
+
 
 generateButton.addEventListener("click", async () => {
 
@@ -82,36 +128,43 @@ generateButton.addEventListener("click", async () => {
     const stack =
         stackInput.value.trim();
 
-    const photo =
-        document.querySelector(".builder-photo")?.src || null;
 
+    const canvas =
+        await createBuilderCanvas({
+            name,
+            stack,
+            photo: currentPhoto
+        });
 
-    const canvas = await createBuilderCanvas({
-        name,
-        stack,
-        photo
-    });
-
-
-    /* Download */
 
     canvas.toBlob((blob) => {
 
         const url =
             URL.createObjectURL(blob);
 
+
         const link =
             document.createElement("a");
+
 
         link.href = url;
 
         link.download =
             "hh-goa-builder-id.png";
 
+
         link.click();
+
 
         URL.revokeObjectURL(url);
 
     }, "image/png");
 
 });
+
+
+/* =========================================
+   INITIAL PREVIEW
+========================================= */
+
+updatePreview();

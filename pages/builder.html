@@ -67,124 +67,81 @@
 
         <section class="builder-workspace">
 
-            <!-- ID CARD -->
-            <div class="id-preview">
+    <!-- =========================
+         ID CARD PREVIEW
+    ========================== -->
 
-                <div class="preview-label">
-                    PREVIEW / 001
-                </div>
+    <div class="id-preview">
 
-                <div class="id-card">
-
-                    <!-- DECORATIVE LAYER -->
-
-<div class="preview-decoration">
-
-    <div class="preview-sun"></div>
-
-    <div class="preview-leaf leaf-1"></div>
-    <div class="preview-leaf leaf-2"></div>
-    <div class="preview-leaf leaf-3"></div>
-
-</div>
-
-    <div class="id-card-header">
-        <span>HH / GOA</span>
-        <span>BUILDER</span>
-    </div>
-
-    <div class="id-card-photo">
-        <div class="photo-placeholder">
-            YOUR PHOTO
+        <div class="preview-label">
+            PREVIEW / 001
         </div>
 
-        <span class="photo-mark">01</span>
+        <canvas
+            id="builderPreviewCanvas"
+            width="1200"
+            height="1765"
+        ></canvas>
+
     </div>
 
-    <div class="id-card-details">
 
-        <div class="id-card-name">
-            <span>NAME</span>
-            <strong class="id-name">YOUR NAME</strong>
+    <!-- =========================
+         CONTROLS
+    ========================== -->
+
+    <div class="builder-controls">
+
+        <div class="control-heading">
+            <span>01</span>
+            YOUR DETAILS
         </div>
 
-        <div class="id-card-stack">
-            <span>BUILDS WITH</span>
-            <strong class="id-stack">YOUR STACK</strong>
-        </div>
+
+        <label for="builder-name">
+            NAME
+        </label>
+
+        <input
+            id="builder-name"
+            type="text"
+            placeholder="Enter your name"
+        >
+
+
+        <label for="builder-stack">
+            WHAT DO YOU BUILD?
+        </label>
+
+        <input
+            id="builder-stack"
+            type="text"
+            placeholder="AI / WEB / ROBOTICS..."
+        >
+
+
+        <label for="builder-photo">
+            PHOTO
+        </label>
+
+        <input
+            id="builder-photo"
+            type="file"
+            accept="image/*"
+        >
+
+
+        <button
+            type="button"
+            class="generate-button"
+        >
+            GENERATE ID
+            <span>↗</span>
+        </button>
 
     </div>
 
-    <div class="id-card-footer">
-
-        <span>GOA / INDIA</span>
-
-        <span class="card-coordinates">
-            15°29'N
-        </span>
-
-        <span>2026</span>
-
-    </div>
-
-</div>
-
-            </div>
-
-
-            <!-- CONTROLS -->
-            <div class="builder-controls">
-
-                <div class="control-heading">
-                    <span>01</span>
-                    YOUR DETAILS
-                </div>
-
-
-                <label for="builder-name">
-                    NAME
-                </label>
-
-                <input
-                    id="builder-name"
-                    type="text"
-                    placeholder="Enter your name"
-                >
-
-
-                <label for="builder-stack">
-                    WHAT DO YOU BUILD?
-                </label>
-
-                <input
-                    id="builder-stack"
-                    type="text"
-                    placeholder="AI / WEB / ROBOTICS..."
-                >
-
-
-                <label for="builder-photo">
-                    PHOTO
-                </label>
-
-                <input
-                    id="builder-photo"
-                    type="file"
-                    accept="image/*"
-                >
-
-
-                <button
-                    type="button"
-                    class="generate-button"
-                >
-                    GENERATE ID
-                    <span>↗</span>
-                </button>
-
-            </div>
-
-        </section>
+</section>
 
     </main>
 
@@ -199,21 +156,9 @@
 
     </footer>
 
-    <footer class="builder-footer">
-
-    <span>HH / GOA</span>
-
-    <span>BUILD SOMETHING.</span>
-
-    <a href="../index.html">BACK HOME ↗</a>
-
-</footer>
 
 <script src="../js/canvas.js"></script>
 <script src="../js/builder.js"></script>
-
-</body>
-</html>
 
 </body>
 </html>
