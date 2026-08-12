@@ -239,41 +239,6 @@ shareButton.addEventListener("click", async () => {
                 }
             );
 
-
-        /* =====================================
-           NATIVE SHARE
-           ===================================== */
-
-        if (
-            navigator.share &&
-            navigator.canShare &&
-            navigator.canShare({
-                files: [file]
-            })
-        ) {
-
-            await navigator.share({
-                files: [file],
-                text: caption
-            });
-
-            return;
-        }
-
-        const downloadUrl =
-            URL.createObjectURL(blob);
-
-        const downloadLink =
-            document.createElement("a");
-
-        downloadLink.href = downloadUrl;
-        downloadLink.download = "hh-goa-builder-id.png";
-        downloadLink.click();
-
-        setTimeout(() => {
-            URL.revokeObjectURL(downloadUrl);
-        }, 4000);
-
         window.location.assign(xUrl);
 
     } catch (error) {
