@@ -93,6 +93,15 @@ photoInput.addEventListener("change", (event) => {
     if (!file) return;
 
 
+    if (!file.type.startsWith("image/")) {
+
+        alert("Please select an image file.");
+
+        photoInput.value = "";
+
+        return;
+    }
+
     const reader =
         new FileReader();
 
