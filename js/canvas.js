@@ -406,52 +406,130 @@ function drawCardInformation(
 
 
     /* =========================================
-       NAME
-    ========================================= */
+   NAME
+========================================= */
 
-    ctx.fillStyle = ink;
+/* Small label */
+
+ctx.fillStyle = coral;
+
+ctx.font =
+    "bold 16px monospace";
+
+ctx.fillText(
+    "BUILDER",
+    90,
+    1130
+);
+
+
+/* Main name */
+
+ctx.fillStyle = ink;
+
+/* =========================================
+   MAIN NAME
+========================================= */
+
+ctx.fillStyle = ink;
+
+let nameText = name || "YOUR NAME";
+
+let nameSize = 76;
+
+const maxNameWidth = 1020;
+
+
+/* Automatically shrink long names */
+
+ctx.font =
+    `bold ${nameSize}px Georgia, serif`;
+
+while (
+    ctx.measureText(nameText).width > maxNameWidth &&
+    nameSize > 38
+) {
+
+    nameSize -= 2;
 
     ctx.font =
-        "bold 70px Georgia, serif";
+        `bold ${nameSize}px Georgia, serif`;
+}
 
-    ctx.fillText(
-        name || "YOUR NAME",
-        90,
-        1170
-    );
+
+ctx.fillText(
+    nameText,
+    90,
+    1190
+);
+
+
+/* Small underline */
+
+ctx.fillStyle = yellow;
+
+ctx.fillRect(
+    90,
+    1210,
+    130,
+    6
+);
 
 
     /* =========================================
-       STACK LABEL
-    ========================================= */
+   STACK / BUILDS WITH
+========================================= */
 
-    ctx.fillStyle = coral;
+/* Label */
+
+ctx.fillStyle = coral;
+
+ctx.font =
+    "bold 17px monospace";
+
+ctx.fillText(
+    "BUILDS WITH",
+    90,
+    1255
+);
+
+
+/* =========================================
+   STACK
+========================================= */
+
+ctx.fillStyle = green;
+
+let stackText =
+    (stack || "YOUR STACK").toUpperCase();
+
+let stackSize = 34;
+
+const maxStackWidth = 1020;
+
+ctx.font =
+    `bold ${stackSize}px monospace`;
+
+
+/* Automatically shrink long stacks */
+
+while (
+    ctx.measureText(stackText).width > maxStackWidth &&
+    stackSize > 18
+) {
+
+    stackSize -= 2;
 
     ctx.font =
-        "bold 18px monospace";
-
-    ctx.fillText(
-        "BUILDS WITH",
-        90,
-        1215
-    );
+        `bold ${stackSize}px monospace`;
+}
 
 
-    /* =========================================
-       STACK
-    ========================================= */
-
-    ctx.fillStyle = green;
-
-    ctx.font =
-        "500 28px monospace";
-
-    ctx.fillText(
-        (stack || "YOUR STACK").toUpperCase(),
-        90,
-        1255
-    );
-
+ctx.fillText(
+    stackText,
+    90,
+    1300
+);
 
     /* =========================================
        DIVIDER
@@ -461,7 +539,7 @@ function drawCardInformation(
 
     ctx.fillRect(
         90,
-        1290,
+        1370,
         1020,
         4
     );
