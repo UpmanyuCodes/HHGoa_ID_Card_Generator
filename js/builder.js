@@ -210,9 +210,6 @@ shareButton.addEventListener("click", async () => {
         "https://x.com/intent/tweet?text=" +
         encodeURIComponent(caption);
 
-    const composeWindow =
-        window.open("", "_blank");
-
     try {
 
         /* Generate the exact same Canvas */
@@ -260,23 +257,7 @@ shareButton.addEventListener("click", async () => {
                 text: caption
             });
 
-            if (composeWindow) {
-                composeWindow.close();
-            }
-
             return;
-        }
-
-
-        if (composeWindow) {
-            composeWindow.location.href = xUrl;
-            composeWindow.focus();
-        } else {
-            window.open(
-                xUrl,
-                "_blank",
-                "noopener,noreferrer"
-            );
         }
 
         const downloadUrl =
@@ -293,6 +274,8 @@ shareButton.addEventListener("click", async () => {
             URL.revokeObjectURL(downloadUrl);
         }, 4000);
 
+        window.location.assign(xUrl);
+
     } catch (error) {
 
         /* User cancelled the native share sheet */
@@ -306,14 +289,6 @@ shareButton.addEventListener("click", async () => {
             error
         );
 
-        if (composeWindow) {
-            composeWindow.close();
-        }
-
-        window.open(
-            xUrl,
-            "_blank",
-            "noopener,noreferrer"
-        );
+        window.location.assign(xUrl);
     }
 });
