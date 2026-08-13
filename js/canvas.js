@@ -619,7 +619,7 @@ ctx.fillText(
         "bold 16px monospace";
 
     ctx.fillText(
-        "#FRAMEINGOA",
+        "#FrameInGoa",
         90,
         1725
     );
